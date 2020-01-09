@@ -1,0 +1,238 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+
+}
+
+audio {
+    width: 100%;
+    align-self: center;
+}
+
+p {
+    align-self: center;
+    justify-self: center;
+}
+
+small {
+    font-size: .75rem;
+}
+
+progress {
+    -webkit-appearance: none;
+    height: 4px;
+    position: relative;
+    width: 200px;
+    cursor: pointer;
+}
+
+strong {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.player-container {
+    width: 500px;
+    height: 140px;
+    border: solid rgb(187, 187, 187) .5px;
+    display: flex;
+    flex-direction: column;
+    margin: 10% auto;
+    background-image: linear-gradient(rgba(212, 208, 208, 0.342), rgba(252, 243, 243, 0.479));
+    z-index: -1;
+
+}
+
+.lower-row {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.audio-area {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.player-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    position: relative;
+}
+
+.album-cover {
+    width: 30%;
+    height: 100%;
+    background-image: url('images/turningpoint.jpg');
+    background-size: cover;
+    background-position-x: -27px;
+}
+
+.timers-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 1rem;
+}
+
+.current-position {
+    margin: -30px 0 0 25px;
+    font-size: .75rem;
+}
+
+.time-remaining {
+    margin: -30px -35px 0 0;
+    font-size: .75rem;
+}
+
+.progress-button {
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+    border: blue .25px solid;
+    position: absolute;
+    background: radial-gradient(white, purple, black);
+    margin-left: -68px;
+}
+
+.buttons {
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+}
+
+.volume {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+}
+
+.volumeBar {
+    -webkit-appearance: none;
+    position: absolute;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.555), rgba(255, 255, 255, 0));
+    height: 6px;
+    width: 30px;
+    transform: rotate(-90deg);
+    margin-left: 155px;
+    margin-top: -30px;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+progress::-webkit-progress-bar {
+
+    background-color: rgb(139, 139, 139);
+    z-index: 3;
+}
+
+progress::-webkit-progress-value {
+    background-image: linear-gradient(to right, grey, rgb(202, 202, 202), blue);
+}
+
+.volumeBar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 6px;
+    width: 6px;
+    border: solid 1px red;
+    background-color: crimson;
+    border-radius: 100%;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="173 173 155 155" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="a">
+      <feGaussianBlur stdDeviation=".58672"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1.381917, 0, 0, 1.381902, 24.54851, -126.287094)" stroke="#000">
+    <path transform="matrix(.99975 0 0 1.0553 6.0393 -9.0992)" d="m211.43 266.65c0 28.403-24.305 51.429-54.286 51.429s-54.286-23.025-54.286-51.429 24.305-51.429 54.286-51.429 54.286 23.025 54.286 51.429z" fill="#fff" filter="url(#a)"/>
+    <path d="m170.54 243.9h17.211v56.783h-17.211z" fill="#2c2c2c" stroke-width=".93142"/>
+    <path d="m138.54 243.9h17.211v56.783h-17.211z" fill="#2c2c2c" stroke-width=".93142"/>
+    <path d="m162.66 219.16c-29.13 1e-5 -52.781 24.323-52.781 54.281 46.899-10.605 58.321-10.745 105.53 0 1e-5 -29.958-23.62-54.281-52.75-54.281z" fill="#fff" opacity=".5" stroke-opacity=".18257"/>
+  </g>
+</svg>
