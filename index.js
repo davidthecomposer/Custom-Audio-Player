@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 const audioPlayers = document.querySelectorAll('.audio-player');
 const playerNumbers = [...audioPlayers].map((player) => player.classList[1]);
-console.log(playerNumbers)
+
 class AudioPlayer {
   constructor(playerNumber) {
     this.player = document.querySelector(`.${playerNumber}`);
@@ -17,7 +17,7 @@ class AudioPlayer {
 
   /* Gets time info from audio object and translates it to timeRemaining text*/
   getDuration() {
-    let time = Math.floor(audio.duration.toFixed(0)) - Math.floor(audio.currentTime.toFixed(0));
+    let time = Math.floor(this.audio.duration.toFixed(0)) - Math.floor(this.audio.currentTime.toFixed(0));
     this.timeRemaining.innerHTML = Math.floor(time / 60) + ":" + (time < 10 ? `0${time}` : time % 60 < 10 ? `0${time % 60}` : time % 60 ? time % 60 : '00');
     if (this.audio.duration - this.audio.currentTime === 0) {
       this.buttons.src = 'images/playbutton.svg';
@@ -48,6 +48,7 @@ class AudioPlayer {
     let pause = 'images/pausebutton.svg';
     if (event.target.src.includes(play)) {
       event.target.src = pause;
+      console.log(this.audio);
       this.audio.play();
 
 
@@ -92,16 +93,16 @@ class AudioPlayer {
     }
   }
   initEventHandlers() {
-    this.buttons.addEventListener('click', this.buttonClickHandle);
-    this.audio.addEventListener('timeupdate', this.getTime);
-    this.audio.addEventListener('durationchange', this.getDuration);
-    this.progressBar.addEventListener('click', this.changeLocation);
-    this.volume.addEventListener('click', this.muteVolume);
-    this.volume.addEventListener('mouseover', this.volumeBarInit);
-    this.volumeBar.addEventListener('input', this.volumeChange);
-    this.volume.addEventListener('mouseleave', this.volumeBarHide);
-    this.volumeBar.onmouseleave = () => this.volumeBarHide();
-    this.volumeBar.addEventListener('mouseover', this.volumeBarInit);
+    this.buttons.onclick = () => this.buttonClickHandle(event);
+    this.audio.ontimeupdate = () =>  this.getTime(event);
+    this.audio.ondurationchange = () => this.getDuration(event);
+    this.progressBar.onclick = () => this.changeLocation(event);
+    this.volume.onclick = () => this.muteVolume(event);
+    this.volume.onmouseover = () => this.volumeBarInit(event);
+    this.volumeBar.oninput = () => this.volumeChange(event);
+    this.volume.onmouseleave = () => this.volumeBarHide;
+    this.volumeBar.onmouseleave = () => this.volumeBarHide(event);
+    this.volumeBar.onmouseover = () => this.volumeBarInit(event);
   }
 }
 
@@ -109,7 +110,7 @@ class AudioPlayer {
 let player1 = new AudioPlayer('one');
 player1.initEventHandlers();
 
-
+console.log(player1.audio)
 
 
 
