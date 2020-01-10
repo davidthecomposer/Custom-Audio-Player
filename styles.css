@@ -121,7 +121,6 @@ strong {
     border: solid rgb(187, 187, 187) .5px;
     display: flex;
     flex-direction: column;
-    margin: 10% auto;
     background-image: linear-gradient(rgba(212, 208, 208, 0.342), rgba(252, 243, 243, 0.479));
     z-index: -1;
 
@@ -156,9 +155,9 @@ strong {
 .album-cover {
     width: 30%;
     height: 100%;
-    background-image: url('images/turningpoint.jpg');
+    /* background-image: url('images/turningpoint.jpg');
     background-size: cover;
-    background-position-x: -27px;
+    background-position-x: -27px; */
 }
 
 .timers-row {

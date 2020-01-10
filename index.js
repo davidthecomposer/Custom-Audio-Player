@@ -100,7 +100,7 @@ class AudioPlayer {
     this.volume.onclick = () => this.muteVolume(event);
     this.volume.onmouseover = () => this.volumeBarInit(event);
     this.volumeBar.oninput = () => this.volumeChange(event);
-    this.volume.onmouseleave = () => this.volumeBarHide;
+    this.volume.onmouseleave = () => this.volumeBarHide(event);
     this.volumeBar.onmouseleave = () => this.volumeBarHide(event);
     this.volumeBar.onmouseover = () => this.volumeBarInit(event);
   }
@@ -109,6 +109,9 @@ class AudioPlayer {
 
 let player1 = new AudioPlayer('one');
 player1.initEventHandlers();
+
+let player2 = new AudioPlayer('two');
+player2.initEventHandlers();
 
 console.log(player1.audio)
 
