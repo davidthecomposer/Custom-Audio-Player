@@ -115,7 +115,7 @@ strong {
     font-size: 1.2rem;
 }
 
-.player-container {
+.audio-player {
     width: 500px;
     height: 140px;
     border: solid rgb(187, 187, 187) .5px;

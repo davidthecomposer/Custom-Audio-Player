@@ -1,111 +1,128 @@
 /* jshint esversion: 6 */
-
-Class
-
-const buttons = document.querySelector('.buttons');
-const progressButton = document.querySelector('.progress-button');
-const progressBar = document.querySelector('progress');
-const audio = document.querySelector('audio');
-const currentPosition = document.querySelector('.current-position p');
-const timeRemaining = document.querySelector('.time-remaining p');
-const volume = document.querySelector('.volume');
-const volumeBar = document.querySelector('.volumeBar');
-
-/* Gets time info from audio object and translates it to timeRemaining text*/
-
-const getDuration = () => {
-  let time = Math.floor(audio.duration.toFixed(0)) - Math.floor(audio.currentTime.toFixed(0));
-  timeRemaining.innerHTML = Math.floor(time / 60) + ":" + (time < 10 ? `0${time}` : time % 60 < 10 ? `0${time % 60}` : time % 60 ? time % 60 : '00');
-  if (audio.duration - audio.currentTime === 0) {
-    buttons.src = 'images/playbutton.svg';
-  }
-  
-};
-
-/* Gets time info from audio object, calls getDuration to continuously update, 
-and updates progress bar value and progress button position*/
-
-const getTime = () => {
-  currentPosition.innerHTML = Math.floor(audio.currentTime.toFixed(0) / 60) + ":" + (audio.currentTime.toFixed(0) < 10 ? `0${audio.currentTime.toFixed(0)}` : audio.currentTime.toFixed(0) % 60 < 10 ? `0${audio.currentTime.toFixed(0) % 60}` : audio.currentTime.toFixed(0) % 60 ? audio.currentTime.toFixed(0) % 60 : '00');
-  getDuration();
-  progressBar.value = (audio.currentTime / audio.duration) * 100;
-  progressButton.style.marginLeft = `${(progressBar.value * 2) - 68}px`;
-
-};
-
-/* When user clicks mouse on progress bar, this skips music and object positions to event location*/
-const changeLocation = (event) => {
-  let percent = event.offsetX / event.target.offsetWidth;
-  progressButton.style.marginLeft = `${(percent * 200) - 68}px`;
-  event.target.value = percent * 100;
-  audio.currentTime = audio.duration * percent;
-};
-
-/* Handles the play/pause button logic*/
-const buttonClickHandle = (event) => {
-  let play = 'images/playbutton.svg';
-  let pause = 'images/pausebutton.svg';
-  if (event.target.src.includes(play)) {
-    event.target.src = pause;
-    audio.play();
-
-
-  } else {
-    event.target.src = play;
-    audio.pause();
+const audioPlayers = document.querySelectorAll('.audio-player');
+const playerNumbers = [...audioPlayers].map((player) => player.classList[1]);
+console.log(playerNumbers)
+class AudioPlayer {
+  constructor(playerNumber) {
+    this.player = document.querySelector(`.${playerNumber}`);
+    this.buttons = this.player.querySelector('.buttons');
+    this.progressButton = this.player.querySelector('.progress-button');
+    this.progressBar = this.player.querySelector('progress');
+    this.audio = this.player.querySelector('audio');
+    this.currentPosition = this.player.querySelector('.current-position p');
+    this.timeRemaining = this.player.querySelector('.time-remaining p');
+    this.volume = this.player.querySelector('.volume');
+    this.volumeBar = this.player.querySelector('.volumeBar');
   }
 
-};
-/* handles the volume icons and controls*/
-const muteVolume = (event) => {
-  let mute = 'images/volumeMute.svg';
-  let volumeIcon = 'images/volumeIcon.svg';
-
-  if (event.target.src.includes(volumeIcon)) {
-    event.target.src = mute;
-    audio.muted = true;
-
+  /* Gets time info from audio object and translates it to timeRemaining text*/
+  getDuration() {
+    let time = Math.floor(audio.duration.toFixed(0)) - Math.floor(audio.currentTime.toFixed(0));
+    this.timeRemaining.innerHTML = Math.floor(time / 60) + ":" + (time < 10 ? `0${time}` : time % 60 < 10 ? `0${time % 60}` : time % 60 ? time % 60 : '00');
+    if (this.audio.duration - this.audio.currentTime === 0) {
+      this.buttons.src = 'images/playbutton.svg';
+    }
   }
- 
-  else {
-    event.target.src = volumeIcon;
-    audio.muted = false;
+
+
+  /* Gets time info from audio object, calls getDuration to continuously update, 
+  and updates progress bar value and progress button position*/
+  getTime() {
+    this.currentPosition.innerHTML = Math.floor(this.audio.currentTime.toFixed(0) / 60) + ":" + (this.audio.currentTime.toFixed(0) < 10 ? `0${this.audio.currentTime.toFixed(0)}` : this.audio.currentTime.toFixed(0) % 60 < 10 ? `0${this.audio.currentTime.toFixed(0) % 60}` : this.audio.currentTime.toFixed(0) % 60 ? this.audio.currentTime.toFixed(0) % 60 : '00');
+    this.getDuration();
+    this.progressBar.value = (this.audio.currentTime / this.audio.duration) * 100;
+    this.progressButton.style.marginLeft = `${(this.progressBar.value * 2) - 68}px`;
   }
-};
 
-/* makes the volume bar visible*/
-const volumeBarInit = () => {
-volumeBar.style.visibility = 'visible';
-
-};
-
-/* handles the logic to change the volume when moving slider*/
-const volumeChange = (event) => {
-audio.volume = event.target.value;
-};
-
-/* hides the volume bar when leaving the slider area or after 3 seconds */
-const volumeBarHide = (event) => {
-  if(event.target === volume) {
-    setTimeout(() => {
-      volumeBar.style.visibility = 'hidden';
-    }, 3000);
-  } else {
-    volumeBar.style.visibility = 'hidden';
+  /* When user clicks mouse on progress bar, this skips music and object positions to event location*/
+  changeLocation(event) {
+    let percent = event.offsetX / event.target.offsetWidth;
+    this.progressButton.style.marginLeft = `${(percent * 200) - 68}px`;
+    event.target.value = percent * 100;
+    this.audio.currentTime = this.audio.duration * percent;
   }
-};
+
+  /* Handles the play/pause button logic*/
+  buttonClickHandle(event) {
+    let play = 'images/playbutton.svg';
+    let pause = 'images/pausebutton.svg';
+    if (event.target.src.includes(play)) {
+      event.target.src = pause;
+      this.audio.play();
+
+
+    } else {
+      event.target.src = play;
+      this.audio.pause();
+    }
+  }
+
+  /* handles the volume icons and controls*/
+  muteVolume(event) {
+    let mute = 'images/volumeMute.svg';
+    let volumeIcon = 'images/volumeIcon.svg';
+
+    if (event.target.src.includes(volumeIcon)) {
+      event.target.src = mute;
+      this.audio.muted = true;
+    } else {
+      event.target.src = volumeIcon;
+      this.audio.muted = false;
+    }
+  }
+
+  /* makes the volume bar visible*/
+  volumeBarInit() {
+    this.volumeBar.style.visibility = 'visible';
+  }
+
+  /* handles the logic to change the volume when moving slider*/
+  volumeChange(event) {
+    this.audio.volume = event.target.value;
+  }
+
+  /* hides the volume bar when leaving the slider area or after 3 seconds */
+  volumeBarHide(event) {
+    if (event.target === this.volume) {
+      setTimeout(() => {
+        this.volumeBar.style.visibility = 'hidden';
+      }, 3000);
+    } else {
+      this.volumeBar.style.visibility = 'hidden';
+    }
+  }
+  initEventHandlers() {
+    this.buttons.addEventListener('click', this.buttonClickHandle);
+    this.audio.addEventListener('timeupdate', this.getTime);
+    this.audio.addEventListener('durationchange', this.getDuration);
+    this.progressBar.addEventListener('click', this.changeLocation);
+    this.volume.addEventListener('click', this.muteVolume);
+    this.volume.addEventListener('mouseover', this.volumeBarInit);
+    this.volumeBar.addEventListener('input', this.volumeChange);
+    this.volume.addEventListener('mouseleave', this.volumeBarHide);
+    this.volumeBar.onmouseleave = () => this.volumeBarHide();
+    this.volumeBar.addEventListener('mouseover', this.volumeBarInit);
+  }
+}
+
+
+let player1 = new AudioPlayer('one');
+player1.initEventHandlers();
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Event listeners*/
-buttons.addEventListener('click', buttonClickHandle);
-audio.addEventListener('timeupdate', getTime);
-audio.addEventListener('durationchange', getDuration);
-progressBar.addEventListener('click', changeLocation);
-volume.addEventListener('click', muteVolume);
-volume.addEventListener('mouseover', volumeBarInit);
-volumeBar.addEventListener('input', volumeChange);
-volume.addEventListener('mouseleave', volumeBarHide);
-volumeBar.addEventListener('mouseleave', volumeBarHide);
-volumeBar.addEventListener('mouseover', volumeBarInit);
+
 
 
 /* to do 
