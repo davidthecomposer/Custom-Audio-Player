@@ -48,10 +48,7 @@ class AudioPlayer {
     let pause = 'images/pausebutton.svg';
     if (event.target.src.includes(play)) {
       event.target.src = pause;
-      console.log(this.audio);
       this.audio.play();
-
-
     } else {
       event.target.src = play;
       this.audio.pause();
@@ -113,7 +110,7 @@ player1.initEventHandlers();
 let player2 = new AudioPlayer('two');
 player2.initEventHandlers();
 
-console.log(player1.audio)
+
 
 
 
