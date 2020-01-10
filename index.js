@@ -1,5 +1,7 @@
 /* jshint esversion: 6 */
 
+Class
+
 const buttons = document.querySelector('.buttons');
 const progressButton = document.querySelector('.progress-button');
 const progressBar = document.querySelector('progress');
