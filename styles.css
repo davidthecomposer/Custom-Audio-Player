@@ -88,21 +88,16 @@ video {
 
 }
 
-audio {
+.audio-file {
     width: 100%;
     align-self: center;
 }
 
-p {
-    align-self: center;
-    justify-self: center;
-}
-
-small {
+.audio-small {
     font-size: .75rem;
 }
 
-progress {
+.audio-progress {
     -webkit-appearance: none;
     height: 4px;
     position: relative;
@@ -110,7 +105,7 @@ progress {
     cursor: pointer;
 }
 
-strong {
+.audio-strong {
     font-weight: bold;
     font-size: 1.2rem;
 }
@@ -122,11 +117,11 @@ strong {
     display: flex;
     flex-direction: column;
     background-image: linear-gradient(rgba(212, 208, 208, 0.342), rgba(252, 243, 243, 0.479));
-    z-index: -1;
+    z-index: 0;
 
 }
 
-.lower-row {
+.audio-lower-row {
     width: 100%;
     height: 100%;
     padding: 0;
@@ -143,7 +138,7 @@ strong {
     justify-content: space-evenly;
 }
 
-.player-row {
+.audio-player-row {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -152,7 +147,7 @@ strong {
     position: relative;
 }
 
-.album-cover {
+.audio-album-cover {
     width: 30%;
     height: 100%;
     /* background-image: url('images/turningpoint.jpg');
@@ -160,24 +155,24 @@ strong {
     background-position-x: -27px; */
 }
 
-.timers-row {
+.audio-timers-row {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     padding-bottom: 1rem;
 }
 
-.current-position {
+.audio-current-position {
     margin: -30px 0 0 25px;
     font-size: .75rem;
 }
 
-.time-remaining {
+.audio-time-remaining {
     margin: -30px -35px 0 0;
     font-size: .75rem;
 }
 
-.progress-button {
+.audio-progress-button {
     height: 8px;
     width: 8px;
     border-radius: 100%;
@@ -187,24 +182,27 @@ strong {
     margin-left: -68px;
 }
 
-.buttons {
+.audio-buttons {
     width: 75px;
     height: 75px;
     cursor: pointer;
 }
 
-.volume {
+.audio-volume {
     width: 16px;
     height: 16px;
     cursor: pointer;
 }
 
-.title {
+.audio-player-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1rem;
+    align-self: center;
+    justify-self: center;
+    
 }
 
-.volumeBar {
+.audio-volumeBar {
     -webkit-appearance: none;
     position: absolute;
     background: linear-gradient(to left, rgba(0, 0, 0, 0.555), rgba(255, 255, 255, 0));
@@ -217,17 +215,17 @@ strong {
     cursor: pointer;
 }
 
-progress::-webkit-progress-bar {
+.audio-progress::-webkit-progress-bar {
 
     background-color: rgb(139, 139, 139);
     z-index: 3;
 }
 
-progress::-webkit-progress-value {
+.audio-progress::-webkit-progress-value {
     background-image: linear-gradient(to right, grey, rgb(202, 202, 202), blue);
 }
 
-.volumeBar::-webkit-slider-thumb {
+.audio-volumeBar::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 6px;
     width: 6px;
