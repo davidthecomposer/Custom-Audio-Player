@@ -1,7 +1,4 @@
 /* jshint esversion: 6 */
-const audioPlayers = document.querySelectorAll('.audio-player');
-const playerNumbers = [...audioPlayers].map((player) => player.classList[1]);
-
 class AudioPlayer {
   constructor(playerNumber) {
     this.player = document.querySelector(`.audio-player.${playerNumber}`);
@@ -31,13 +28,13 @@ class AudioPlayer {
     this.currentPosition.innerHTML = Math.floor(this.audio.currentTime.toFixed(0) / 60) + ":" + (this.audio.currentTime.toFixed(0) < 10 ? `0${this.audio.currentTime.toFixed(0)}` : this.audio.currentTime.toFixed(0) % 60 < 10 ? `0${this.audio.currentTime.toFixed(0) % 60}` : this.audio.currentTime.toFixed(0) % 60 ? this.audio.currentTime.toFixed(0) % 60 : '00');
     this.getDuration();
     this.progressBar.value = (this.audio.currentTime / this.audio.duration) * 100;
-    this.progressButton.style.marginLeft = `${(this.progressBar.value * 2) - 68}px`;
+    this.progressButton.style.left = `${(this.progressBar.value * 2) + 100}px`;
   }
 
   /* When user clicks mouse on progress bar, this skips music and object positions to event location*/
   changeLocation(event) {
     let percent = event.offsetX / event.target.offsetWidth;
-    this.progressButton.style.marginLeft = `${(percent * 200) - 68}px`;
+    this.progressButton.style.left = `${(percent * 200) + 100}px`;
     event.target.value = percent * 100;
     this.audio.currentTime = this.audio.duration * percent;
   }
@@ -100,6 +97,8 @@ class AudioPlayer {
     this.volume.onmouseleave = () => this.volumeBarHide(event);
     this.volumeBar.onmouseleave = () => this.volumeBarHide(event);
     this.volumeBar.onmouseover = () => this.volumeBarInit(event);
+
+    this.getDuration();
   }
 }
 
